@@ -4074,9 +4074,9 @@ var Login = function Login() {
       return res.payload;
     }).then(function (res) {
       return (0,_utils_logs__WEBPACK_IMPORTED_MODULE_14__.success)("logged user ".concat(res.email), dispatch((0,_store_favorites__WEBPACK_IMPORTED_MODULE_12__.getFavorites)(res.id)), history.push("/mymovies/".concat(res.id)));
-    }); // .catch(({ response }) => error(response.status, response.statusText,
-    // setWrongPass(true))
-    // )
+    }).catch(function (response) {
+      return (0,_utils_logs__WEBPACK_IMPORTED_MODULE_14__.error)(response.status, response.statusText, setWrongPass(true));
+    });
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_10__.createElement("div", {
@@ -4229,7 +4229,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_MovieCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/MovieCard */ "./src/components/MovieCard.jsx");
 
 
@@ -4244,6 +4245,10 @@ var Mymovies = function Mymovies() {
   var user = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.user;
   });
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useHistory)();
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    if (!user.id) history.push("/");
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     className: "welcomeDiv"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h3", null, "Welcome to OMDB ", user.nickname, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
@@ -4255,7 +4260,7 @@ var Mymovies = function Mymovies() {
     });
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     className: "noResultsDiv"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h4", null, "No movies added to favorites"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h4", null, "No movies added to favorites"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
     to: "/",
     className: "btn btn-default text-light"
   }, "Go Back To Movies"));
@@ -4307,9 +4312,6 @@ var Navbar = function Navbar() {
   var user = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(function (state) {
     return state.user;
   });
-  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    dispatch((0,_store_user__WEBPACK_IMPORTED_MODULE_5__.getCurrentUser)());
-  }, []);
 
   var handleLogout = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
@@ -4740,13 +4742,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _Movies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Movies */ "./src/containers/Movies.jsx");
-/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Navbar */ "./src/components/Navbar.jsx");
-/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Footer */ "./src/components/Footer.jsx");
-/* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Register */ "./src/components/Register.jsx");
-/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
-/* harmony import */ var _components_MyMovies__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/MyMovies */ "./src/components/MyMovies.jsx");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _Movies__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Movies */ "./src/containers/Movies.jsx");
+/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Navbar */ "./src/components/Navbar.jsx");
+/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Footer */ "./src/components/Footer.jsx");
+/* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Register */ "./src/components/Register.jsx");
+/* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Login */ "./src/components/Login.jsx");
+/* harmony import */ var _components_MyMovies__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/MyMovies */ "./src/components/MyMovies.jsx");
+/* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../store/user */ "./src/store/user.js");
+
+
 
 
 
@@ -4759,20 +4765,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    dispatch((0,_store_user__WEBPACK_IMPORTED_MODULE_10__.getPassportUser)());
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_5__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/register"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_Register__WEBPACK_IMPORTED_MODULE_6__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_Register__WEBPACK_IMPORTED_MODULE_7__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/login"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_Login__WEBPACK_IMPORTED_MODULE_7__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_Login__WEBPACK_IMPORTED_MODULE_8__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     exact: true,
     path: "/mymovies/:id",
     render: function render(_ref) {
       var match = _ref.match;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_MyMovies__WEBPACK_IMPORTED_MODULE_8__.default, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_MyMovies__WEBPACK_IMPORTED_MODULE_9__.default, {
         userId: match.params.id
       });
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_Movies__WEBPACK_IMPORTED_MODULE_3__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_Footer__WEBPACK_IMPORTED_MODULE_5__.default, null));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_Movies__WEBPACK_IMPORTED_MODULE_4__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_Footer__WEBPACK_IMPORTED_MODULE_6__.default, null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -4970,7 +4980,8 @@ var moviesReducer = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createReduc
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
 /* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _movies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./movies */ "./src/store/movies.js");
@@ -4984,16 +4995,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_6__.configureStore)({
+var reducers = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_6__.combineReducers)({
+  movies: _movies__WEBPACK_IMPORTED_MODULE_2__.default,
+  movie: _movie__WEBPACK_IMPORTED_MODULE_3__.default,
+  favorites: _favorites__WEBPACK_IMPORTED_MODULE_4__.default,
+  user: _user__WEBPACK_IMPORTED_MODULE_5__.default
+});
+var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_7__.configureStore)({
   middleware: function middleware(getDefaultMiddleware) {
     return getDefaultMiddleware().concat((redux_logger__WEBPACK_IMPORTED_MODULE_1___default()));
   },
-  reducer: {
-    movies: _movies__WEBPACK_IMPORTED_MODULE_2__.default,
-    movie: _movie__WEBPACK_IMPORTED_MODULE_3__.default,
-    favorites: _favorites__WEBPACK_IMPORTED_MODULE_4__.default,
-    user: _user__WEBPACK_IMPORTED_MODULE_5__.default
-  }
+  reducer: reducers
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
 
@@ -5011,7 +5023,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getCurrentUser": function() { return /* binding */ getCurrentUser; },
 /* harmony export */   "registerUser": function() { return /* binding */ registerUser; },
 /* harmony export */   "loginUser": function() { return /* binding */ loginUser; },
-/* harmony export */   "logoutUser": function() { return /* binding */ logoutUser; }
+/* harmony export */   "logoutUser": function() { return /* binding */ logoutUser; },
+/* harmony export */   "getPassportUser": function() { return /* binding */ getPassportUser; }
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -5031,22 +5044,25 @@ var registerUser = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncT
 var loginUser = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)('LOGIN_USER', function (user) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/users/login", user).then(function (res) {
     return res.data;
-  }).catch(function (err) {
-    return err;
   });
 });
 var logoutUser = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)('LOGOUT_USER', function () {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/users/logut").then(function (res) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/users/logout").then(function (res) {
+    return res.data;
+  });
+});
+var getPassportUser = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)('GET_PASSPORT_USER', function () {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/users/me").then(function (res) {
     return res.data;
   });
 });
 var currentUserReducer = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createReducer)({}, (_createReducer = {}, _defineProperty(_createReducer, getCurrentUser, function (state, action) {
   return action.payload;
-}), _defineProperty(_createReducer, registerUser.fulfilled, function (state, action) {
-  return action.payload;
 }), _defineProperty(_createReducer, loginUser.fulfilled, function (state, action) {
   return action.payload;
 }), _defineProperty(_createReducer, logoutUser.fulfilled, function (state, action) {
+  return action.payload;
+}), _defineProperty(_createReducer, getPassportUser.fulfilled, function (state, action) {
   return action.payload;
 }), _createReducer));
 /* harmony default export */ __webpack_exports__["default"] = (currentUserReducer);

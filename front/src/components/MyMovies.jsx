@@ -1,11 +1,16 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import MovieCard from "../components/MovieCard"
 
 const Mymovies = () => {
   const favorites = useSelector((state) => state.favorites)
   const user = useSelector((state) => state.user)
+  const history = useHistory()
+
+  useEffect(() => {
+    if (!user.id) history.push(`/`)
+  }, [])
 
   return (
     <div className="welcomeDiv">
@@ -21,12 +26,12 @@ const Mymovies = () => {
           : <div className="noResultsDiv">
             <h4>No movies added to favorites</h4>
           </div>}
-        </div>
-          <hr />
-          <Link to="/" className="btn btn-default text-light">
-            Go Back To Movies
+      </div>
+      <hr />
+      <Link to="/" className="btn btn-default text-light">
+        Go Back To Movies
       </Link>
-        </div>
+    </div>
   )
 }
 

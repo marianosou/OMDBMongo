@@ -18,6 +18,10 @@ const loginUser = (req, res) => {
 const logoutUser = (req, res) => {
     req.logOut();
     res.sendStatus(200);
-  }
+}
+  
+const getUser = (req, res) => {
+  res.send(req.user)
+}
 
-module.exports = {isLoggedIn, registerUser, loginUser, logoutUser}
+module.exports = {isLoggedIn, registerUser, loginUser, logoutUser, getUser}

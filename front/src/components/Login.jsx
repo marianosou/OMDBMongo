@@ -18,14 +18,15 @@ const Login = () => {
     dispatch(loginUser({
       email, password
     }))
+      
       .then(res => res.payload)
       .then(res => success(`logged user ${res.email}`,
         dispatch(getFavorites(res.id)),
         history.push(`/mymovies/${res.id}`)
       ))
-      // .catch(({ response }) => error(response.status, response.statusText,
-      // setWrongPass(true))
-      // )
+      .catch(( response ) => error(response.status, response.statusText,
+      setWrongPass(true))
+      )
   }
 
   return (

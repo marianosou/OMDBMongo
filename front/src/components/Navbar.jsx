@@ -10,10 +10,6 @@ const Navbar = () => {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   
-  useEffect(() => {
-    dispatch(getCurrentUser())
-  }, [])
-
   const handleLogout = async () => {
     log("logout attempt...");
     dispatch(logoutUser())
