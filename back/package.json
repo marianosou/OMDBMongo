@@ -1,0 +1,33 @@
+{
+  "name": "omdb_back",
+  "version": "1.0.0",
+  "description": "ombd back",
+  "main": "index.js",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "helmet": "^4.5.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "safe-buffer": "^5.2.1",
+    "sequelize": "^6.5.0",
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "marianosou",
+  "license": "ISC"
+}

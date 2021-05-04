@@ -1,0 +1,163 @@
+html{
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: #141414;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  margin-bottom: -50px;
+}
+
+.movie-app > .row {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+.navbar {
+  background-color: #1c5f62;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: nowrap; /* assumes you only want one row */
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+.footer {
+  background-color: #141414;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+  margin-top: auto;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.search-container {
+  width: 90%;
+}
+
+.movies-custom {
+  vertical-align: top;
+  display: flex;
+  width: 100%;
+  justify-content: center !important;
+  margin: 0;
+}
+
+img {
+  float: center;
+  width: 250px;
+  height: 400px;
+}
+
+p {
+  font-weight: 600;
+  text-align: center;
+  font-size: 14px;
+  color: grey;
+  margin-top: 5px;
+  overflow: auto;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+.movie-div {
+  width: 270px;
+  height: 470px;
+  text-align: center;
+  margin: 15px;
+  background-color: rgb(39, 37, 37);
+  padding-top: 14px;
+  position: relative;
+  transition: transform 0.2;
+}
+
+.movie-div:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.navbar-brand {
+  font-weight: 500;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 30px;
+  margin-left: 40px;
+  margin-right: 0px
+}
+
+.movie-div:hover .fav-div{
+  opacity: 1;
+}
+
+.fav-div{
+  position: absolute;
+	background: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	transition: 0.5s ease;
+	opacity: 0;
+	bottom: 0;
+	font-size: 15px;
+	padding: 20px;
+	text-align: center;
+  color: white;
+}
+
+.card-body{
+  background-color: rgb(39, 37, 37) !important
+}
+
+.card-detail{
+  background-color: rgb(39, 37, 37) !important
+}
+
+.list-group-item{
+  background-color: rgb(39, 37, 37) !important
+}
+
+.navbarButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-right: 40px;
+}
+
+.welcomeDiv{
+  margin-top: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.loginContainer{
+  margin-top: 50px;
+  text-align: center;
+}
+
+.registerContainer{
+  margin-top: 50px;
+  text-align: center;
+}
+
+.noResultsDiv{
+  margin-top: 50px;
+}
+
+.logoutButton{
+  margin-top: 40px;
+  text-align: center
+}
+
+.favoritesList{
+    list-style-type: none;
+    padding-left: 0;
+}
