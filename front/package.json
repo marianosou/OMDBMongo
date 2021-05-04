@@ -4,12 +4,10 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
-    "antd": "^4.13.0",
     "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "bcrypt": "^5.0.0",
     "bootstrap": "^4.6.0",
-    "core-js": "^3.9.1",
     "express": "^4.17.1",
     "helmet": "^3.23.3",
     "passport": "^0.4.1",
@@ -17,7 +15,6 @@
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "react": "^17.0.1",
-    "react-bootstrap": "^1.5.0",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
@@ -25,8 +22,6 @@
     "react-scripts": "4.0.3",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "redux-persist": "^6.0.0",
-    "reduxjs-toolkit-persist": "^7.0.1",
     "sequelize": "^6.5.0"
   },
   "scripts": {
