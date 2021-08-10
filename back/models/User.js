@@ -1,43 +1,18 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
-const bcrypt = require("bcrypt");
-class User extends Sequelize.Model {
-  hash(password, salt) {
-    return bcrypt.hash(password, salt);
-  }
-}
+const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
+const Schema = mongoose.Schema
 
-User.init(
-  {
-    nickname: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    password: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    salt: {
-      type: Sequelize.STRING,
-    },
+const UserSchema = new Schema({
+  nickname: String,
+  email: {
+    type: String,
+    unique: true,
   },
-  { sequelize: db, modelName: "user" }
-);
+  hash_password: String,
+})
 
-User.beforeCreate((user) => {
-  return bcrypt
-    .genSalt(16)
-    .then((salt) => {
-      user.salt = salt;
-      return user.hash(user.password, salt);
-    })
-    .then((hash) => {
-      user.password = hash;
-    });
-});
+UserSchema.methods.comparePassword = function(password) {
+  return bcrypt.compareSync(password, this.hash_password);
+};
 
-module.exports = User;
+module.exports = mongoose.model('User', UserSchema)

@@ -14,17 +14,17 @@ export const logoutUser = createAsyncThunk('LOGOUT_USER', () => {
     return axios.post("/api/users/logout")
         .then(res => res.data)
 })
-export const getPassportUser = createAsyncThunk('GET_PASSPORT_USER', () => {
-    return axios.get("/api/users/me")
-        .then(res => res.data)
-})
+// export const getUser = createAsyncThunk('GET_PASSPORT_USER', () => {
+//     return axios.get("/api/users/me")
+//         .then(res => res.data)
+// })
 
 
 const currentUserReducer = createReducer({}, {
     [getCurrentUser]: (state, action) => action.payload,
     [loginUser.fulfilled]: (state, action) => action.payload,
     [logoutUser.fulfilled]: (state, action) => action.payload,
-    [getPassportUser.fulfilled]: (state, action) => action.payload
+    // [getUser.fulfilled]: (state, action) => action.payload
 })
 
 export default currentUserReducer

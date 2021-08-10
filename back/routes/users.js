@@ -1,10 +1,8 @@
 const router = require("express").Router()
-const passport = require("passport");
-const { registerUser, loginUser, logoutUser, getUser, isLoggedIn} = require("../controllers/user")
+const { isLoggedIn, registerUser, loginUser, getUser } = require("../controllers/user")
 
 router.post("/register", registerUser);
-router.post("/login", passport.authenticate("local"), loginUser);
-router.post("/logout", logoutUser);
-router.get("/me", isLoggedIn, getUser)
+router.post("/login", loginUser);
+router.post("/me", isLoggedIn, getUser)
 
 module.exports = router;

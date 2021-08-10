@@ -11,9 +11,9 @@ import { getPassportUser } from "../store/user"
 
 const App = () => {
   const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getPassportUser())
-  }, [])
+  // useEffect(() => {
+  //   dispatch(getPassportUser())
+  // }, [])
 
   return (
     <>

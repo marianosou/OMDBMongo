@@ -1,5 +1,5 @@
- 
 module.exports = {
-    name: 'Passport',
-    port: 3000,
-  }
+  secret: "omdb",
+  db: 'mongodb://localhost/omdb',
+  port: 3000
+}

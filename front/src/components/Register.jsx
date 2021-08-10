@@ -19,7 +19,7 @@ const Register = () => {
     ))
       .then(() => success(`new user registered`),
         (history.push("/login")))
-    // .catch(({ response }) => error(response.status, response.statusText,))
+      .catch(({ response }) => error(response.status, response.statusText,))
   }
 
   return (

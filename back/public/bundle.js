@@ -4456,7 +4456,10 @@ var Register = function Register() {
       password: password
     })).then(function () {
       return (0,_utils_logs__WEBPACK_IMPORTED_MODULE_13__.success)("new user registered");
-    }, history.push("/login")); // .catch(({ response }) => error(response.status, response.statusText,))
+    }, history.push("/login")).catch(function (_ref) {
+      var response = _ref.response;
+      return (0,_utils_logs__WEBPACK_IMPORTED_MODULE_13__.error)(response.status, response.statusText);
+    });
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_10__.createElement("div", {
@@ -4765,10 +4768,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
-  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    dispatch((0,_store_user__WEBPACK_IMPORTED_MODULE_10__.getPassportUser)());
-  }, []);
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)(); // useEffect(() => {
+  //   dispatch(getPassportUser())
+  // }, [])
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react__WEBPACK_IMPORTED_MODULE_2__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_5__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/register"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_components_Register__WEBPACK_IMPORTED_MODULE_7__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
@@ -5023,8 +5026,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getCurrentUser": function() { return /* binding */ getCurrentUser; },
 /* harmony export */   "registerUser": function() { return /* binding */ registerUser; },
 /* harmony export */   "loginUser": function() { return /* binding */ loginUser; },
-/* harmony export */   "logoutUser": function() { return /* binding */ logoutUser; },
-/* harmony export */   "getPassportUser": function() { return /* binding */ getPassportUser; }
+/* harmony export */   "logoutUser": function() { return /* binding */ logoutUser; }
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -5050,19 +5052,16 @@ var logoutUser = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThu
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/users/logout").then(function (res) {
     return res.data;
   });
-});
-var getPassportUser = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)('GET_PASSPORT_USER', function () {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/users/me").then(function (res) {
-    return res.data;
-  });
-});
+}); // export const getUser = createAsyncThunk('GET_PASSPORT_USER', () => {
+//     return axios.get("/api/users/me")
+//         .then(res => res.data)
+// })
+
 var currentUserReducer = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createReducer)({}, (_createReducer = {}, _defineProperty(_createReducer, getCurrentUser, function (state, action) {
   return action.payload;
 }), _defineProperty(_createReducer, loginUser.fulfilled, function (state, action) {
   return action.payload;
 }), _defineProperty(_createReducer, logoutUser.fulfilled, function (state, action) {
-  return action.payload;
-}), _defineProperty(_createReducer, getPassportUser.fulfilled, function (state, action) {
   return action.payload;
 }), _createReducer));
 /* harmony default export */ __webpack_exports__["default"] = (currentUserReducer);

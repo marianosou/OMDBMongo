@@ -1,27 +1,18 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-class Favorite extends Sequelize.Model { }
+const FavoriteSchema = new Schema({
+    Title: String,
+    imdbID: String,
+    Year: String,
+    Poster: String,
+    Type: String,
+    user: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    }
+})
 
-Favorite.init(
-    {
-        Title: {
-            type: Sequelize.STRING,
-        },
-        imdbID: {
-            type: Sequelize.STRING,
-        },
-        Year: {
-            type: Sequelize.STRING,
-        },
-        Poster: {
-            type: Sequelize.STRING,
-        },
-        Type: {
-            type: Sequelize.STRING,
-        }
-    },
-    { sequelize: db, modelName: "favorite" }
-)
+module.exports = mongoose.model('Favorite', FavoriteSchema)
 
-module.exports = Favorite
+
